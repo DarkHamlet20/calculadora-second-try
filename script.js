@@ -38,7 +38,7 @@ function handleSymbol(symbol){
             }
             break;
         case '+':
-        case '-':
+        case '−':
         case '×':
         case '÷':   
             handleMath(symbol);
@@ -67,7 +67,7 @@ function flushOperation(intBuffer){
     if(previosOperator === '+'){
         runningTotal += intBuffer;
     }
-    else if(previosOperator === '-'){
+    else if(previosOperator === '−'){
         runningTotal -= intBuffer;
     }
     else if(previosOperator === '×'){
@@ -76,7 +76,22 @@ function flushOperation(intBuffer){
     else if(previosOperator === '÷'){
         runningTotal /= intBuffer;
     }
-
-
-
 }
+
+function handleNumber(numberString){
+    if(buffer === '0'){
+        buffer = numberString;
+    }
+    else{
+        buffer += numberString;
+    }
+}
+
+function init(){
+    document.querySelector('.calc-buttons').addEventListener('click', function(event){
+        buttonClick(event.target.innerText);
+    })  
+}
+
+
+init();
